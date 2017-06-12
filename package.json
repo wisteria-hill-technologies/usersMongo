@@ -1,0 +1,16 @@
+{
+  "name": "usersmongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noby Fujioka",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^3.4.2",
+    "mongoose": "^4.10.5",
+    "nodemon": "^1.11.0"
+  }
+}
