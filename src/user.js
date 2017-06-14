@@ -11,8 +11,19 @@ const UserSchema = new Schema({
     },
     required: [true, 'Name is required.']
   },
-  postCount: Number,
-  posts: [PostSchema]  //To add subdocuments, just do like this.
+  posts: [PostSchema],  //To add subdocuments, just do like this.
+  likes: Number,
+  blogPosts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'BlogPost'
+  }]
+});
+
+//Virtual Types
+//.virtual tells the schema we want virtual field
+//Use function here. .get(function(){ }) Not, () => {} in this case, to make 'this' refer to User.
+UserSchema.virtual('postCount').get(function() {
+  return this.posts.length;
 });
 
 const User = mongoose.model('User', UserSchema);
