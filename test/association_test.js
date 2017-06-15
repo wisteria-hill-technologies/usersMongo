@@ -19,10 +19,34 @@ describe('Associations', ()=>{
       .then(()=> done());
   });
 
-  it.only('saves a relation between a user and a blogpost', (done)=>{ //if you put it.only(..)  Only this test will be run.
+  it('loads a relation between a user and a blogpost', (done)=>{ //if you put it.only(..)  Only this test will be run.
     User.findOne({ name: 'Joe'})
+      .populate('blogPosts')
       .then((user)=>{
-        console.log(user);
+        assert(user.blogPosts[0].title === 'Mongo Is Great!');
+        done();
+      });
+  });
+
+  it('loads a full relation graph', (done)=>{
+    User.findOne({ name: 'Joe' })
+      .populate({
+        path: 'blogPosts',
+        populate: {
+          path: 'comments',
+          model: 'Comment',
+          populate: {
+            path: 'user',
+            model: 'User'
+          }
+        }
+      })
+      .then((user)=>{
+        // console.log(user.blogPosts[0].comments[0].user);
+        assert(user.name==='Joe');
+        assert(user.blogPosts[0].title === 'Mongo Is Great!');
+        assert(user.blogPosts[0].comments[0].content==='Congrats on your great post!');
+        assert(user.blogPosts[0].comments[0].user.name==='Joe');
         done();
       });
   });
