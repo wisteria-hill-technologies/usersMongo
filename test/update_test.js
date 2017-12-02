@@ -15,13 +15,13 @@ describe('Updating records', ()=>{
       .then((users)=>{
         assert(users.length === 1);
         assert(users[0].name === 'Alex');
-        done();
+        done(); //tells it block outside that operation is finished.
       });
   }
 
   it('update a user model instance, using set and save', (done)=>{
     joe.set('name', 'Alex'); //use set when you want to update properties incrementally and save after words.
-    assertName(joe.save(), done);
+    assertName(joe.save(), done); //make sure to pass done for this it block.
 
   });
 
