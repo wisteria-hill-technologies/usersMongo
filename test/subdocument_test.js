@@ -27,7 +27,7 @@ describe('Subdocuments', ()=> {
       .then((user)=>{
         assert(user.posts[0].title==="MyPostTitle");
         done();
-      });
+      }).catch(err => console.log(err));
   });
 
   it('can remove an exisiting subdocument', (done)=>{

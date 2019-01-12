@@ -17,7 +17,7 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'BlogPost'
   }]
-});
+}, { usePushEach: true });
 
 //Virtual Types
 //.virtual tells the schema we want virtual field
