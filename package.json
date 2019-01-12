@@ -9,6 +9,7 @@
   "author": "Noby Fujioka",
   "license": "ISC",
   "dependencies": {
+    "growl": "^1.10.5",
     "mocha": "^3.4.2",
     "mongoose": "^4.10.5",
     "nodemon": "^1.11.0"
