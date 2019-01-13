@@ -21,7 +21,7 @@ describe('Associations', ()=>{
 
   it('loads a relation between a user and a blogpost', (done)=>{ //if you put it.only(..)  Only this test will be run.
     User.findOne({ name: 'Joe'})
-      .populate('blogPosts')
+      .populate('blogPosts') //user will only have an id of blogPost, so the modifier(.populate) will populate it with actual blogPost object.
       .then((user)=>{
         assert(user.blogPosts[0].title === 'Mongo Is Great!');
         done();

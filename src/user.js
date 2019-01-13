@@ -30,9 +30,9 @@ UserSchema.virtual('postCount').get(function() {
 
 UserSchema.pre('remove', function(next){  // pre is a middleware. Every middleware requires 'next'.
   const BlogPost = mongoose.model('BlogPost'); // Load blogPost model here instead of the top of the page, in order to avoid cyclic load between blogPost and user models.
-  BlogPost.remove({ _id: { $in: this.blogPosts }})  //'this' here means an instance of User (e.g. joe). $in means that , if the id is in 'user.blogPosts', remove it. $in only takes an aray.
+  // DO NOT iterate though each blogpost! like this.blogPosts.each(id => ... But, do it as below
+  BlogPost.remove({ _id: { $in: this.blogPosts }})  //'this' here means an instance of User (e.g. joe). $in means that , if the id is in 'user.blogPosts', remove it. $in only takes an array.
     .then(()=>next());
-
 });
 
 const User = mongoose.model('User', UserSchema); // User model
