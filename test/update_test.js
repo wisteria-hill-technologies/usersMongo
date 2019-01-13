@@ -10,7 +10,7 @@ describe('Updating records', ()=>{
   });
 
   function assertName(operation, done) {
-    operation
+    operation  //this will be a returned promise.
       .then(()=>User.find({}))  //find({}) means no criteria. find everything.
       .then((users)=>{
         assert(users.length === 1);
@@ -51,9 +51,10 @@ describe('Updating records', ()=>{
   });
 
   //xit will not run the test.
-  it('A user can have their postcount incremented by 1', (done)=>{
+  it('A user can have their likes incremented by 1', (done)=>{
     //$inc will increment the specified property (e.g. postCount) with the specified number (e.g. 1, 2, -2 or whatever number).
-    User.update({ name: 'Joe'}, { $inc: { likes: 1 } })
+    // Check out for mongo update operators // https://docs.mongodb.com/manual/reference/operator/update/
+    User.update({ name: 'Joe'}, { $inc: { likes: 1 } }) // increment by 1 here.  You can also do by a negative value (like -4)
       .then(()=>User.findOne({ name: 'Joe'}))
       .then((user)=>{
         assert(user.likes === 1);

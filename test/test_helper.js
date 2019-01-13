@@ -14,7 +14,7 @@ before((done)=>{  //before will run the code inside only once.
     });
 });
 
-beforeEach((done)=>{ //beforeEach runs code insdie before each test. Make sure to pass 'done' so that the next test will not be executed before the process in this beforeEach is finished.
+beforeEach((done)=>{ //beforeEach runs code inside before each test. Make sure to pass 'done' so that the next test will not be executed before the process in this beforeEach is finished.
   // clear users in database with drop()
   const { users, comments, blogposts } = mongoose.connection.collections; // Important!! mongoose lower-case and pluralise all the collections. So, use lower-case and pluralise all the collections you are calling here.
   users.drop(()=>{

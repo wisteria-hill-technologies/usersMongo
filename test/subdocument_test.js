@@ -18,7 +18,9 @@ describe('Subdocuments', ()=> {
       posts: []
     });
     joe.save()
-      .then(()=>User.findOne({ name: 'Joe' })) // .then(()=>User.findOne({ name: 'Joe' })) is the same as .then(()=>{ return User.findOne({ name: 'Joe' }) }).
+      .then(()=>User.findOne({ name: 'Joe' }))
+      // .then(()=>User.findOne({ name: 'Joe' })) is the same as .then(()=>{ return User.findOne({ name: 'Joe' }) }).
+      // Regarding subdocuments, you will always have to find the parent - e.g.user
       .then((user)=>{
         user.posts.push({ title: 'MyPostTitle'});
         return user.save();  //make sure to return here, so that we can chain another promise.

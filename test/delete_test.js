@@ -12,7 +12,7 @@ describe('Deleting a user', ()=>{
 
   // Many ways to delete a record in mongoDB
   it('model instance: remove', (done)=>{
-    joe.remove()
+    joe.remove() // remove the specific instance of itself.
       .then(() => User.findOne({ name: 'Joe' }))
       .then((user) => {
         assert(user === null);
@@ -22,7 +22,7 @@ describe('Deleting a user', ()=>{
 
   it('class method: remove', (done)=>{
     // Remove a bunch of records with some given criteria
-    User.remove({ name: "Joe" })
+    User.remove({ name: "Joe" }) // this will return some object regardless of whether Joe exists or not.
       .then(()=>User.findOne({ name: "Joe" }))
       .then((user)=>{
         assert(user===null);

@@ -12,7 +12,7 @@ describe('Creating records', ()=>{
         // Has joe been saved successfully?
         // Check if Joe is saved below with assert.
         assert(!joe.isNew); //.isNew means the data exists but not saved in the database yet. !joe.isNew means joe is saved.
-        done();  //sinal with 'done()'' that this 'it' funciton is complete, and that we can move on to next test.
+        done();  //signal with 'done()'' that this 'it' funciton is complete, and that we can move on to next test.
       });
 
   });
