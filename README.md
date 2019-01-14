@@ -26,4 +26,3 @@ UserSchema.pre('remove', function(next){  // pre is a middleware. Every middlewa
     .then(()=>next());
 });
 ```
-
