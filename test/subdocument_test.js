@@ -37,7 +37,7 @@ describe('Subdocuments', ()=> {
     joe.save()
       .then(()=>User.findOne({ name: 'Joe' }))
       .then((user)=>{
-        user.posts[0].remove(); //Important!! When you remove subdocument, you will still need to save afterwords, unlike model class/model instance.remove().
+        user.posts[0].deleteOne(); //Important!! When you remove subdocument, you will still need to save afterwords, unlike model class/model instance.remove().
         return user.save();
       })
       .then(()=>User.findOne({ name: 'Joe'}))

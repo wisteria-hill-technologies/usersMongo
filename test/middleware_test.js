@@ -16,12 +16,15 @@ describe('Middleware', ()=>{
       .then(()=> done());
   });
 
-  it('users clean up dangling blogposts on remove', (done)=>{
-    joe.remove()
-      .then(()=> BlogPost.count())
-      .then((count)=>{
+  it('users clean up dangling blogposts on deleteOne', (done)=> {
+    joe.deleteOne()
+      .then(()=> BlogPost.countDocuments())
+      .then((count)=> {
         assert(count === 0);
         done();
-      });
+      })
+        .catch(err => {
+          console.log('error: ', err);
+        });
   });
 });

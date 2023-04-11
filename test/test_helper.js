@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 before((done)=>{  //before will run the code inside only once.
-  mongoose.connect('mongodb://localhost/users_test', { useMongoClient: true });
+  mongoose.connect('mongodb://localhost/users_test');
   mongoose.connection
     .once('open', ()=> {
       //Once the connection is open, it will run the function.

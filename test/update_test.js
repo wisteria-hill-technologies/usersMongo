@@ -25,13 +25,13 @@ describe('Updating records', ()=>{
 
   });
 
-  it('update a user model instance, using update', (done)=>{
-    assertName(joe.update({ name: 'Alex' }), done); //update at one go.
+  it('update a user model instance, using updateOne', (done)=>{
+    assertName(joe.updateOne({ name: 'Alex' }), done); //update at one go.
   });
 
   it('A model class can update', (done)=>{
     assertName(
-      User.update({ name: 'Joe'}, { name: 'Alex'}), //This will update all the records with the first argument ('Joe') and replace them with the second argument ('Alex').
+      User.updateOne({ name: 'Joe'}, { name: 'Alex'}), //This will update all the records with the first argument ('Joe') and replace them with the second argument ('Alex').
       done
     );
   });
@@ -54,7 +54,7 @@ describe('Updating records', ()=>{
   it('A user can have their likes incremented by 1', (done)=>{
     //$inc will increment the specified property (e.g. postCount) with the specified number (e.g. 1, 2, -2 or whatever number).
     // Check out for mongo update operators // https://docs.mongodb.com/manual/reference/operator/update/
-    User.update({ name: 'Joe'}, { $inc: { likes: 1 } }) // increment by 1 here.  You can also do by a negative value (like -4)
+    User.updateOne({ name: 'Joe'}, { $inc: { likes: 1 } }) // increment by 1 here.  You can also do by a negative value (like -4)
       .then(()=>User.findOne({ name: 'Joe'}))
       .then((user)=>{
         assert(user.likes === 1);
